@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div className="home">
             <h1>Search for weather by city</h1>
-            <input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
+            <input type="text" placeholder="City..." value={city} onChange={(event) => setCity(event.target.value)} />
             <button type="button">Search</button>
         </div>
     );

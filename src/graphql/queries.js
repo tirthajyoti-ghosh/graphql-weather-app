@@ -9,6 +9,7 @@ export const GET_WEATHER_QUERY = gql`
             weather {
                 summary {
                     title
+                    description
                     icon
                 }
                 temperature {

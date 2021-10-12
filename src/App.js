@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import Home from './components/Home';
+import './assets/styles/main.scss';
 
 function App() {
     const client = new ApolloClient({

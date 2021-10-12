@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'Pulp Display';
+    src:
+        local('../fonts/Pulp Display Light'),
+        local('../fonts/Pulp-Display-Light'),
+        url('../fonts/PulpDisplay-Light.woff2') format('woff2'),
+        url('../fonts/PulpDisplay-Light.woff') format('woff'),
+        url('../fonts/PulpDisplay-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}

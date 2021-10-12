@@ -30,61 +30,103 @@ const Home = () => {
     }
 
     if (loading) {
-        return <h1>Loading....</h1>;
+        return <h1>Loading...</h1>;
     }
 
-    const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
+    if (data && data.getCityByName) {
+        const countryName = new Intl.DisplayNames(['en'], { type: 'region' });
+
+        return (
+            <div className="container" style={{ background: `url(${backgroundImage})` }}>
+                <div className="primary-info">
+                    <div>
+                        <h1 className="temp-actual">
+                            {Math.round(data.getCityByName.weather.temperature.actual - 273)}
+                            °
+                        </h1>
+                        <small>
+                            Feels like:
+                            {' '}
+                            {Math.round(data.getCityByName.weather.temperature.feelsLike - 273)}
+                            °
+                        </small>
+                    </div>
+                    <div>
+                        <h2>
+                            {data.getCityByName.name}
+                            ,
+                            {' '}
+                            {countryName.of(data.getCityByName.country)}
+                        </h2>
+                        <small>
+                            Min:
+                            {' '}
+                            {data.getCityByName.weather.temperature.min}
+                            °, Max:
+                            {' '}
+                            {data.getCityByName.weather.temperature.max}
+                            °
+                        </small>
+                    </div>
+                    <div>
+                        <img
+                            src={`https://openweathermap.org/img/wn/${data.getCityByName.weather.summary.icon}@2x.png`}
+                            alt={data.getCityByName.weather.summary.description}
+                        />
+                        <small>{data.getCityByName.weather.summary.title}</small>
+                    </div>
+                </div>
+
+                <div className="secondary-info">
+                    <div className="search">
+                        <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
+                        <button
+                            type="button"
+                            onClick={() => getWeather({ variables: { name: city } })}
+                        >
+                            Search
+                        </button>
+                    </div>
+
+                    <div className="weather-details">
+                        <h3>Weather Details</h3>
+
+                        <p>
+                            Wind speed
+                            <span>{data.getCityByName.weather.wind.speed}</span>
+                        </p>
+                        <p>
+                            Direction
+                            <span>{data.getCityByName.weather.wind.deg}</span>
+                        </p>
+                        <p>
+                            Cloudiness
+                            <span>{data.getCityByName.weather.clouds.all}</span>
+                        </p>
+                        <p>
+                            Visibility
+                            <span>{data.getCityByName.weather.clouds.visibility}</span>
+                        </p>
+                        <p>
+                            Humidity
+                            <span>{data.getCityByName.weather.clouds.humidity}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <div className="home">
+        <div className="search">
             <h1>Search for weather by city</h1>
-            <input type="text" placeholder="City..." value={city} onChange={(event) => setCity(event.target.value)} />
+            <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
             <button
                 type="button"
                 onClick={() => getWeather({ variables: { name: city } })}
             >
                 Search
             </button>
-
-            {data && data.getCityByName && backgroundImage && (
-                <div style={{ background: `url(${backgroundImage})` }}>
-                    <h3>
-                        Name:
-                        {' '}
-                        {data.getCityByName.name}
-                    </h3>
-                    <h3>
-                        Country:
-                        {' '}
-                        {countryName.of(data.getCityByName.country)}
-                    </h3>
-                    <h3>
-                        Summary:
-                        {' '}
-                        {data.getCityByName.weather.summary.title}
-                    </h3>
-                    <h3>
-                        Icon:
-                        {' '}
-                        <img src={`https://openweathermap.org/img/wn/${data.getCityByName.weather.summary.icon}@2x.png`} alt={data.getCityByName.weather.summary.description} />
-                    </h3>
-                    <h3>
-                        Temperature (actual):
-                        {' '}
-                        {data.getCityByName.weather.temperature.actual - 273}
-                    </h3>
-                    <h3>
-                        Wind (speed):
-                        {' '}
-                        {data.getCityByName.weather.wind.speed}
-                    </h3>
-                    <h3>
-                        Clouds (all):
-                        {' '}
-                        {data.getCityByName.weather.clouds.all}
-                    </h3>
-                </div>
-            )}
         </div>
     );
 };

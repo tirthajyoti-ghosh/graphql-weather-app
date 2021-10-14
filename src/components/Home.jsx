@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLazyQuery } from '@apollo/client';
+import useColorThief from 'use-color-thief';
+import invert from 'invert-color';
 
 import { GET_WEATHER_QUERY } from '../graphql/queries';
 
@@ -10,6 +12,8 @@ const Home = () => {
     const [backgroundImage, setBackgroundImage] = useState('');
 
     const [getWeather, { loading, data, error }] = useLazyQuery(GET_WEATHER_QUERY);
+
+    const { color } = useColorThief(backgroundImage, { format: 'hex' });
 
     // Get weather image ONLY when `data` changes.
     useEffect(() => {
@@ -87,44 +91,46 @@ const Home = () => {
                 </div>
 
                 <div className="secondary-info">
+
                     <div className="search">
                         <div className="input">
-                            <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
-                            <span />
+                            <input style={{ color: invert(color || '#000', { black: '#8A9796', white: '#fff' }) }} type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
+                            <span style={{ backgroundColor: invert(color || '#000', { black: '#8A9796', white: '#fff' }) }} />
                         </div>
                         <button
-                            style={{ background: '#233243' }}
+                            style={{ background: color }}
                             type="button"
                             onClick={() => getWeather({ variables: { name: city } })}
                         >
-                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#fff" d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z" /></svg>
+                            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill={invert(color || '#000')} d="M508.5 481.6l-129-129c-2.3-2.3-5.3-3.5-8.5-3.5h-10.3C395 312 416 262.5 416 208 416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c54.5 0 104-21 141.1-55.2V371c0 3.2 1.3 6.2 3.5 8.5l129 129c4.7 4.7 12.3 4.7 17 0l9.9-9.9c4.7-4.7 4.7-12.3 0-17zM208 384c-97.3 0-176-78.7-176-176S110.7 32 208 32s176 78.7 176 176-78.7 176-176 176z" /></svg>
                         </button>
                     </div>
 
                     <div className="weather-details">
-                        <h3>Weather Details</h3>
+                        <h3 style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>Weather Details</h3>
 
-                        <p>
+                        <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                             Wind speed
-                            <span>{data.getCityByName.weather.wind.speed}</span>
+                            <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.wind.speed}</span>
                         </p>
-                        <p>
+                        <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                             Direction
-                            <span>{data.getCityByName.weather.wind.deg}</span>
+                            <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.wind.deg}</span>
                         </p>
-                        <p>
+                        <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                             Cloudiness
-                            <span>{data.getCityByName.weather.clouds.all}</span>
+                            <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.all}</span>
                         </p>
-                        <p>
+                        <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                             Visibility
-                            <span>{data.getCityByName.weather.clouds.visibility}</span>
+                            <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.visibility}</span>
                         </p>
-                        <p>
+                        <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                             Humidity
-                            <span>{data.getCityByName.weather.clouds.humidity}</span>
+                            <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.humidity}</span>
                         </p>
                     </div>
+
                 </div>
             </div>
         );

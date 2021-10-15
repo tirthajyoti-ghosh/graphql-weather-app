@@ -1,0 +1,34 @@
+.loading {
+    position: absolute;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #ffffffa6;
+
+    .spinner {
+        width: 3.75em;
+        position: absolute;
+        top: calc(50% - 1.875em);
+        left: calc(50% - 1.875em);
+        animation: 1.5s spin ease infinite;
+    }
+
+    .ring {
+        fill: none;
+        stroke: hsla(341, 97%, 59%, 0.3);
+        stroke-width: 2;
+    }
+
+    .ball {
+        fill: #fc2f70;
+        stroke: none;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+}

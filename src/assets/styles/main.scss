@@ -6,6 +6,9 @@
 // Input element styles
 @import 'input.scss';
 
+// Loading spinner styles
+@import 'loader.scss';
+
 .container {
     display: flex;
     min-height: 100vh;

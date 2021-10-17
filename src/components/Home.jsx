@@ -7,6 +7,7 @@ import invert from 'invert-color';
 
 import { GET_WEATHER_QUERY } from '../graphql/queries';
 import Loader from './Loader';
+import Search from './Search';
 
 const Home = () => {
     const [city, setCity] = useState('');
@@ -15,6 +16,7 @@ const Home = () => {
 
     const [getWeather, { data, error }] = useLazyQuery(GET_WEATHER_QUERY);
 
+    // Hook to get dominant color of background image
     const { color } = useColorThief(backgroundImage, { format: 'hex' });
 
     // Get weather image ONLY when `data` changes.
@@ -151,19 +153,12 @@ const Home = () => {
     }
 
     return (
-        <div className="search">
-            <h1>Search for weather by city</h1>
-            <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
-            <button
-                type="button"
-                onClick={() => {
-                    getWeather({ variables: { name: city } });
-                    setIsLoading(true);
-                }}
-            >
-                Search
-            </button>
-        </div>
+        <Search
+            city={city}
+            setCity={setCity}
+            setIsLoading={setIsLoading}
+            getWeather={getWeather}
+        />
     );
 };
 

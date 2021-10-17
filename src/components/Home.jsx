@@ -105,7 +105,7 @@ const Home = () => {
                     <div className="secondary-info">
 
                         <div className="search">
-                            <div className="input">
+                            <div className="input-cont">
                                 <input style={{ color: invert(color || '#000', { black: '#8A9796', white: '#fff' }) }} type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
                                 <span style={{ backgroundColor: invert(color || '#000', { black: '#8A9796', white: '#fff' }) }} />
                             </div>

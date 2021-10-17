@@ -12,9 +12,12 @@ const Search = ({
     }
 
     return (
-        <div className="search">
+        <div className="search initial">
             <form onSubmit={fetchData}>
-                <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
+                <div className="input-cont single">
+                    <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />
+                    <span />
+                </div>
                 <button type="submit" style={{ display: 'none' }}>Search</button>
             </form>
         </div>

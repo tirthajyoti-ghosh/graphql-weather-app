@@ -60,6 +60,7 @@ const Home = () => {
                         backgroundImage: `url(${backgroundImage})`,
                     }}
                 >
+                    <a href="/" className="logo">the.weather</a>
                     <div className="primary-info">
                         <div className="align-center">
                             <div>

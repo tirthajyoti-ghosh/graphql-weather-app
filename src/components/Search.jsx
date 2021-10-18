@@ -13,6 +13,7 @@ const Search = ({
 
     return (
         <div className="search initial">
+            <a href="/" className="logo">the.weather</a>
             <form onSubmit={fetchData}>
                 <div className="input-cont single">
                     <input type="text" placeholder="Search by city" value={city} onChange={(event) => setCity(event.target.value)} />

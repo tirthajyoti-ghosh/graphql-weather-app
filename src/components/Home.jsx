@@ -49,6 +49,13 @@ const Home = () => {
     }
 
     if (data && data.getCityByName) {
+        const dataInvertedColor = invert(color || '#000', { black: '#000', white: '#fff' });
+        const styles = {
+            heading: { color: dataInvertedColor },
+            text: { color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) },
+            data: { color: dataInvertedColor },
+        };
+
         return (
             <>
                 {isLoading ? <Loader /> : ''}
@@ -66,13 +73,13 @@ const Home = () => {
                         <div className="align-center">
                             <div>
                                 <h1 className="temp-actual">
-                                    {Math.round(data.getCityByName.weather.temperature.actual - 273)}
+                                    {Math.round(data.getCityByName.weather.temperature.actual - 273.15)}
                                     °C
                                 </h1>
                                 <small className="temp-feelsLike">
                                     Feels like:
                                     {' '}
-                                    {Math.round(data.getCityByName.weather.temperature.feelsLike - 273)}
+                                    {Math.round(data.getCityByName.weather.temperature.feelsLike - 273.15)}
                                     °C
                                 </small>
                             </div>
@@ -86,10 +93,10 @@ const Home = () => {
                                 <small>
                                     Min:
                                     {' '}
-                                    {Math.round(data.getCityByName.weather.temperature.min - 273)}
-                                    °C, Max:
+                                    {Math.round(data.getCityByName.weather.temperature.min - 273.15)}
+                                    °C / Max:
                                     {' '}
-                                    {Math.round(data.getCityByName.weather.temperature.max - 273)}
+                                    {Math.round(data.getCityByName.weather.temperature.max - 273.15)}
                                     °C
                                 </small>
                             </div>
@@ -124,27 +131,34 @@ const Home = () => {
                         </div>
 
                         <div className="weather-details">
-                            <h3 style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>Weather Details</h3>
+                            <h3 style={styles.heading}>Weather Details</h3>
 
-                            <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
-                                Wind speed
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.wind.speed}</span>
+                            <hr />
+
+                            <h4 style={styles.heading}>Wind</h4>
+                            <p style={styles.text}>
+                                Speed
+                                <span style={styles.data}>{data.getCityByName.weather.wind.speed}</span>
                             </p>
-                            <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
+                            <p style={styles.text}>
                                 Direction
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{getDirectionFromAngle(data.getCityByName.weather.wind.deg)}</span>
+                                <span style={styles.data}>{getDirectionFromAngle(data.getCityByName.weather.wind.deg)}</span>
                             </p>
-                            <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
+
+                            <hr />
+
+                            <h4 style={styles.heading}>Clouds</h4>
+                            <p style={styles.text}>
                                 Cloudiness
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.all}</span>
+                                <span style={styles.data}>{data.getCityByName.weather.clouds.all}</span>
                             </p>
-                            <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
+                            <p style={styles.text}>
                                 Visibility
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.visibility}</span>
+                                <span style={styles.data}>{data.getCityByName.weather.clouds.visibility}</span>
                             </p>
-                            <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
+                            <p style={styles.text}>
                                 Humidity
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.clouds.humidity}</span>
+                                <span style={styles.data}>{data.getCityByName.weather.clouds.humidity}</span>
                             </p>
                         </div>
 

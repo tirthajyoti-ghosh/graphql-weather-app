@@ -138,7 +138,11 @@ const Home = () => {
                             <h4 style={styles.heading}>Wind</h4>
                             <p style={styles.text}>
                                 Speed
-                                <span style={styles.data}>{data.getCityByName.weather.wind.speed}</span>
+                                <span style={styles.data}>
+                                    {data.getCityByName.weather.wind.speed}
+                                    {' '}
+                                    m/s
+                                </span>
                             </p>
                             <p style={styles.text}>
                                 Direction
@@ -150,15 +154,25 @@ const Home = () => {
                             <h4 style={styles.heading}>Clouds</h4>
                             <p style={styles.text}>
                                 Cloudiness
-                                <span style={styles.data}>{data.getCityByName.weather.clouds.all}</span>
+                                <span style={styles.data}>
+                                    {data.getCityByName.weather.clouds.all}
+                                    %
+                                </span>
                             </p>
                             <p style={styles.text}>
                                 Visibility
-                                <span style={styles.data}>{data.getCityByName.weather.clouds.visibility}</span>
+                                <span style={styles.data}>
+                                    {data.getCityByName.weather.clouds.visibility / 1000}
+                                    {' '}
+                                    km
+                                </span>
                             </p>
                             <p style={styles.text}>
                                 Humidity
-                                <span style={styles.data}>{data.getCityByName.weather.clouds.humidity}</span>
+                                <span style={styles.data}>
+                                    {data.getCityByName.weather.clouds.humidity}
+                                    %
+                                </span>
                             </p>
                         </div>
 

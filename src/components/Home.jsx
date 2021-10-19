@@ -6,6 +6,7 @@ import useColorThief from 'use-color-thief';
 import invert from 'invert-color';
 
 import { GET_WEATHER_QUERY } from '../graphql/queries';
+import { getDirectionFromAngle } from '../utilities/general';
 import Loader from './Loader';
 import Search from './Search';
 
@@ -24,7 +25,7 @@ const Home = () => {
         async function fetchBackgroundImage() {
             // Since passing a dependency array will cause the function to run on mount, this if condition prevents that. As `data` is undefined on mount.
             if (data && data.getCityByName) {
-                const { data: images } = await axios.get(`https://utility-endpoints.netlify.app/.netlify/functions/unsplash-image-search?orientation=landscape&query=${data.getCityByName.name} ${data.getCityByName.weather.summary.description} weather`);
+                const { data: images } = await axios.get(`https://utility-endpoints.netlify.app/.netlify/functions/unsplash-image-search?per_page=1000&orientation=landscape&query=${data.getCityByName.name} ${data.getCityByName.weather.summary.description} weather`);
 
                 setBackgroundImage(images.results[Math.floor(Math.random() * images.results.length)].urls.full);
             }
@@ -131,7 +132,7 @@ const Home = () => {
                             </p>
                             <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                                 Direction
-                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{data.getCityByName.weather.wind.deg}</span>
+                                <span style={{ color: invert(color || '#000', { black: '#000', white: '#fff' }) }}>{getDirectionFromAngle(data.getCityByName.weather.wind.deg)}</span>
                             </p>
                             <p style={{ color: invert(color || '#000', { black: '#8A9796', white: '#eaf2f5de' }) }}>
                                 Cloudiness

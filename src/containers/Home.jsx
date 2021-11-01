@@ -5,10 +5,10 @@ import { useLazyQuery } from '@apollo/client';
 import useColorThief from 'use-color-thief';
 
 import { GET_WEATHER_QUERY } from '../graphql/queries';
-import Loader from './Loader';
-import Search from './Search';
-import Primary from './WeatherDetails/Primary';
-import Secondary from './WeatherDetails/Secondary';
+import Loader from '../components/Loader';
+import Search from '../components/Search';
+import Primary from '../components/WeatherDetails/Primary';
+import Secondary from '../components/WeatherDetails/Secondary';
 
 const Home = () => {
     const [city, setCity] = useState('');

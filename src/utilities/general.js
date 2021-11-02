@@ -37,7 +37,7 @@ export function getParsedWeatherData(data) {
 
     return {
         tempActual: Math.round(tempActual - 273.15),
-        feelsLike: Math.round(tempFeelsLike - 273.15),
+        tempFeelsLike: Math.round(tempFeelsLike - 273.15),
         tempMin: Math.round(tempMin - 273.15),
         tempMax: Math.round(tempMax - 273.15),
         windDirection: getDirectionFromAngle(windAngle),

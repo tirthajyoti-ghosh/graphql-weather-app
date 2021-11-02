@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { getParsedWeatherData } from '../../utilities/general';
 
-// eslint-disable-next-line react/prop-types
 const Primary = ({ data }) => {
     const {
         tempActual,
@@ -58,6 +59,35 @@ const Primary = ({ data }) => {
             </div>
         </div>
     );
+};
+
+Primary.propTypes = {
+    data: PropTypes.shape({
+        weather: PropTypes.shape({
+            temperature: PropTypes.shape({
+                actual: PropTypes.number,
+                feelsLike: PropTypes.number,
+                min: PropTypes.number,
+                max: PropTypes.number,
+            }),
+            summary: PropTypes.shape({
+                icon: PropTypes.string,
+                title: PropTypes.string,
+                description: PropTypes.string,
+            }),
+            wind: PropTypes.shape({
+                speed: PropTypes.number,
+                deg: PropTypes.number,
+            }),
+            clouds: PropTypes.shape({
+                all: PropTypes.number,
+                visibility: PropTypes.number,
+                humidity: PropTypes.number,
+            }),
+        }),
+        name: PropTypes.string,
+        country: PropTypes.string,
+    }).isRequired,
 };
 
 export default Primary;

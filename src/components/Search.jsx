@@ -1,8 +1,8 @@
 import React from 'react';
 import invert from 'invert-color';
+import PropTypes from 'prop-types';
 
 const Search = ({
-    // eslint-disable-next-line react/prop-types
     city, setCity, setIsLoading, getWeather, isHome, color,
 }) => {
     function fetchData(event) {
@@ -45,6 +45,20 @@ const Search = ({
             </form>
         </div>
     );
+};
+
+Search.defaultProps = {
+    isHome: undefined,
+    color: undefined,
+};
+
+Search.propTypes = {
+    city: PropTypes.string.isRequired,
+    setCity: PropTypes.func.isRequired,
+    setIsLoading: PropTypes.func.isRequired,
+    getWeather: PropTypes.func.isRequired,
+    isHome: PropTypes.bool,
+    color: PropTypes.string,
 };
 
 export default Search;

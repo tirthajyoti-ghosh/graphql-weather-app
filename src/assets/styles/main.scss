@@ -76,18 +76,6 @@
         backdrop-filter: blur(20px);
         padding: 0 0 3rem 3rem;
 
-        .search {
-            display: flex;
-
-            button {
-                background: transparent;
-                border: none;
-                outline: none;
-                padding: 30px 32px;
-                cursor: pointer;
-            }
-        }
-
         .weather-details {
             padding: 3rem 3rem 0 0;
 

@@ -1,7 +1,7 @@
 .logo {
     position: absolute;
-    top: 4rem;
-    left: 4rem;
+    top: clamp(1.5rem, 4vw, 4rem);
+    left: clamp(1.5rem, 4vw, 4rem);
     color: #fff;
     z-index: 99;
     font-size: 1.2rem;

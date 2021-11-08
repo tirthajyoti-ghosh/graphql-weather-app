@@ -7,7 +7,7 @@
         padding-top: 35px;
         margin-right: 60px;
         color: white;
-        font-size: 2.5rem;
+        font-size: clamp(1.8rem, 2.5vw, 2.8rem);
         font-family: inherit;
         background-color: transparent;
         border: none;
@@ -40,8 +40,7 @@
 
         input,
         span {
-            max-width: 500px;
-            min-width: 300px;
+            width: clamp(250px, 90%, 500px);
         }
 
         input {
